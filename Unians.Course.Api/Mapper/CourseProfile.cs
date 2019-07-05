@@ -1,8 +1,4 @@
 ﻿using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Unians.Course.Api.Data.Models;
 using Unians.Course.Data.Models;
 

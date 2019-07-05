@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AspNetCore.Infrastructure.Repositories.EntityFrameworkCore;
 using AspNetCore.Infrastructure.Repositories.EntityFrameworkCore.Helpers;
-using AspNetCore.Infrastructure.Repositories.EntityFrameworkCore.Models.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -12,11 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using Unians.Course.Data.Context;
-using Unians.Course.Data.Models;
+using Unians.Course.Data.Interfaces;
+using Unians.Course.Data.Repositories;
 
 namespace Unians.Course.Api
 {
@@ -38,7 +32,7 @@ namespace Unians.Course.Api
 
             services.AddTransient<DbContext, CourseDbContext>();
 
-            services.AddTransient<IEfRepository<DbCourse>, BaseEntityFrameworkCoreRepository<DbCourse>>();
+            services.AddTransient<ICourseRepository, CourseRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 

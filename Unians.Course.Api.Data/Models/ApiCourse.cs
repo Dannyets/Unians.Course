@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Unians.Course.Api.Data.Models
+﻿namespace Unians.Course.Api.Data.Models
 {
     public class ApiCourse
     {

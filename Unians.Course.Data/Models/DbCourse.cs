@@ -1,7 +1,4 @@
 ﻿using AspNetCore.Infrastructure.Repositories.EntityFrameworkCore.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Unians.Course.Data.Models
 {
