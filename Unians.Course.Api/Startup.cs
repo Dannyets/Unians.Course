@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AspNetCore.Infrastructure.Repositories.EntityFrameworkCore;
+using AspNetCore.Infrastructure.Repositories.EntityFrameworkCore.Helpers;
+using AspNetCore.Infrastructure.Repositories.EntityFrameworkCore.Models.Interfaces;
 using AutoMapper;
-using BaseRepositories.EntityFrameworkCore.MySql;
-using Course.DAL;
-using Course.DAL.Interfaces;
-using Course.DAL.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+using Unians.Course.Data.Context;
+using Unians.Course.Data.Models;
 
-namespace Course.Api
+namespace Unians.Course.Api
 {
     public class Startup
     {
@@ -34,7 +36,9 @@ namespace Course.Api
 
             services.AddDbContext<CourseDbContext>();
 
-            services.AddTransient<ICourseRepository, CourseRepository>();
+            services.AddTransient<DbContext, CourseDbContext>();
+
+            services.AddTransient<IEfRepository<DbCourse>, BaseEntityFrameworkCoreRepository<DbCourse>>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -58,7 +62,8 @@ namespace Course.Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
         {
-            MySqlDbHelper.MigrateDatabase<CourseDbContext>(serviceProvider);
+            //TODO: CHANGE TO MIGRATE ONCE DB IS CREATED
+            DatabaseHelper.EnsureDatabaseCreated<CourseDbContext>(serviceProvider);
 
             if (env.IsDevelopment())
             {
