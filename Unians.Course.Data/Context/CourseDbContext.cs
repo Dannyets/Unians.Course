@@ -19,11 +19,13 @@ namespace Unians.Course.Data.Context
             optionsBuilder.UseInMemoryDatabase("unians_course");
         }
 
-        public DbSet<DbCourse> Faculties { get; set; }
+        public DbSet<DbCourse> Courses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<DbCourse>().HasKey(p => p.Id);
+
+            modelBuilder.Entity<DbCourse>().HasIndex(p => p.FacultyId);
 
             //TODO: REMOVE ONCE NEW DATABASE IS ADDED
             AddInitialData(modelBuilder);
