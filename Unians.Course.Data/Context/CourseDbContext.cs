@@ -33,17 +33,36 @@ namespace Unians.Course.Data.Context
 
         private void AddInitialData(ModelBuilder modelBuilder)
         {
-            var course = new DbCourse
+            var courses = new List<DbCourse>
             {
-                Id = 1,
-                FacultyId = 1,
-                CourseNumber = "03455567",
-                Name = "מבוא למדעי המחשב",
-                CreatedAt = DateTime.UtcNow,
-                LastUdpatedAt = DateTime.UtcNow
+                new DbCourse
+                {
+                    Id = 1,
+                    FacultyId = 1,
+                    CourseNumber = "03455567",
+                    Name = "מבוא למדעי המחשב",
+                    CreatedAt = DateTime.UtcNow,
+                    LastUdpatedAt = DateTime.UtcNow
+                },
+                new DbCourse
+                {
+                    Id = 2,
+                    FacultyId = 1,
+                    CourseNumber = "234218",
+                    Name = "מבני נתונים 1",
+                    CreatedAt = DateTime.UtcNow,
+                    LastUdpatedAt = DateTime.UtcNow
+                },
+                new DbCourse
+                {
+                    Id = 1,
+                    FacultyId = 1,
+                    CourseNumber = "234247",
+                    Name = "אלגוריתמים 1",
+                    CreatedAt = DateTime.UtcNow,
+                    LastUdpatedAt = DateTime.UtcNow
+                }
             };
-
-            var courses = new List<DbCourse> { course };
 
             modelBuilder.Entity<DbCourse>().HasData(courses);
         }
